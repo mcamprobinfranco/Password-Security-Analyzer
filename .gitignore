@@ -1,0 +1,27 @@
+### Java / Spring Boot ###
+backend/target/
+backend/build/
+backend/.mvn/wrapper/maven-wrapper.jar
+*.class
+*.jar
+!*-sources.jar
+!*-javadoc.jar
+
+### IDE ###
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+
+### Node / React ###
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.env
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+### Docker ###
+*.env
