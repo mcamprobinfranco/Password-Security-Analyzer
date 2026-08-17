@@ -182,3 +182,44 @@
     border-right-color: var(--border);
   }
 }
+
+.comparison {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.comparison h2 {
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.comparison-results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.comparison-column {
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.comparison-column.winner {
+  background-color: rgba(46, 204, 113, 0.1);
+}
+
+.comparison-verdict {
+  text-align: center;
+  font-weight: 600;
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
