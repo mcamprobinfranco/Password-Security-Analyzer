@@ -36,9 +36,8 @@ function App() {
   }, [debouncedAnalyze]);
 
   return (
-  <div className="app">
-    <h1>Analizador de Contraseñas</h1>
-
+    <div className="app">
+      <h1>Analizador de Contraseñas</h1>
       <div className="card">
         <div className="password-field">
           <PasswordInput onAnalyze={handleAnalyze} />
@@ -57,7 +56,6 @@ function App() {
         <PasswordComparison />
       </div>
     </div>
-  </div>
   );
 }
 
