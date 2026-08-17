@@ -1,6 +1,8 @@
 package com.martin.password_analyzer.service;
 
 import com.martin.password_analyzer.dto.PasswordAnalysisResponse;
+import com.martin.password_analyzer.dto.PasswordComparisonResponse;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -107,5 +109,25 @@ public class PasswordAnalysisService {
         if (!r.getDetectedPatterns().isEmpty()) suggestions.add("Evita palabras o secuencias comunes y predecibles");
 
         return suggestions;
+    }
+
+    public PasswordComparisonResponse compare(String passwordA, String passwordB) {
+        PasswordComparisonResponse response = new PasswordComparisonResponse();
+
+        PasswordAnalysisResponse analysisA = analyze(passwordA);
+        PasswordAnalysisResponse analysisB = analyze(passwordB);
+
+        response.setAnalysisA(analysisA);
+        response.setAnalysisB(analysisB);
+
+        if (analysisA.getEntropy() > analysisB.getEntropy()) {
+            response.setStrongerPassword("A");
+        } else if (analysisB.getEntropy() > analysisA.getEntropy()) {
+            response.setStrongerPassword("B");
+        } else {
+            response.setStrongerPassword("TIE");
+        }
+
+        return response;
     }
 }
