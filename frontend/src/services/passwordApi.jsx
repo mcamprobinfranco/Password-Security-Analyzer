@@ -15,3 +15,19 @@ export async function analyzePassword(password) {
 
   return response.json();
 }
+
+export async function comparePasswords(passwordA, passwordB) {
+  const response = await fetch(`${API_URL}/compare`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ passwordA, passwordB }),
+  });
+
+  if (!response.ok) {
+    throw new Error('Error al comparar las contraseñas');
+  }
+
+  return response.json();
+}
