@@ -36,8 +36,8 @@ function App() {
   }, [debouncedAnalyze]);
 
   return (
-    <div className="app">
-      <h1>Analizador de Contraseñas</h1>
+  <div className="app">
+    <h1>Analizador de Contraseñas</h1>
 
       <div className="card">
         <div className="password-field">
@@ -57,6 +57,7 @@ function App() {
         <PasswordComparison />
       </div>
     </div>
+  </div>
   );
 }
 
