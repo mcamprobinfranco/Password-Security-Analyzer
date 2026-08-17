@@ -157,6 +157,13 @@ body {
   left: 4px;
 }
 
+.all-good {
+  color: var(--strong);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
 .comparison {
   margin-top: 24px;
   padding-top: 24px;
