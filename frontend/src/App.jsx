@@ -35,12 +35,15 @@ function App() {
   }, [debouncedAnalyze]);
 
   return (
-    <div className="app">
-      <h1>Analizador de Contraseñas</h1>
+  <div className="app">
+    <h1>Analizador de Contraseñas</h1>
 
-      <PasswordInput onAnalyze={handleAnalyze} />
+    <div className="card">
+      <div className="password-field">
+        <PasswordInput onAnalyze={handleAnalyze} />
+      </div>
 
-      {loading && <p>Analizando...</p>}
+      {loading && <p className="status-text">Analizando...</p>}
       {error && <p className="error">{error}</p>}
 
       {analysis && (
@@ -50,6 +53,7 @@ function App() {
         </>
       )}
     </div>
+  </div>
   );
 }
 

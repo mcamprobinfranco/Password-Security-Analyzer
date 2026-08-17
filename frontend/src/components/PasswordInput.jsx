@@ -10,7 +10,7 @@ function PasswordInput({ onAnalyze }) {
   };
 
   return (
-    <div>
+    <>
       <label htmlFor="password">Contraseña</label>
       <input
         id="password"
@@ -19,7 +19,7 @@ function PasswordInput({ onAnalyze }) {
         onChange={handleChange}
         placeholder="Escribe tu contraseña..."
       />
-    </div>
+    </>
   );
 }
 

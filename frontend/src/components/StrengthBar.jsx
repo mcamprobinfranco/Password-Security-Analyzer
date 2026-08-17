@@ -16,9 +16,10 @@ function StrengthBar({ level, entropy }) {
           style={{ width: config.width, backgroundColor: config.color }}
         />
       </div>
-      <p style={{ color: config.color, fontWeight: 'bold' }}>
-        {config.label} · Entropía: {entropy.toFixed(1)} bits
-      </p>
+      <div className="strength-label">
+        <span style={{ color: config.color }}>{config.label}</span>
+        <span className="entropy">{entropy.toFixed(1)} bits</span>
+      </div>
     </div>
   );
 }
