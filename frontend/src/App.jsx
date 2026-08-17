@@ -3,6 +3,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import PasswordInput from './components/PasswordInput';
 import StrengthBar from './components/StrengthBar';
 import SuggestionsList from './components/SuggestionsList';
+import PasswordComparison from './components/PasswordComparison';
 import { analyzePassword } from './services/passwordApi';
 import './App.css';
 
@@ -38,20 +39,23 @@ function App() {
   <div className="app">
     <h1>Analizador de Contraseñas</h1>
 
-    <div className="card">
-      <div className="password-field">
-        <PasswordInput onAnalyze={handleAnalyze} />
+      <div className="card">
+        <div className="password-field">
+          <PasswordInput onAnalyze={handleAnalyze} />
+        </div>
+
+        {loading && <p className="status-text">Analizando...</p>}
+        {error && <p className="error">{error}</p>}
+
+        {analysis && (
+          <>
+            <StrengthBar level={analysis.strengthLevel} entropy={analysis.entropy} />
+            <SuggestionsList suggestions={analysis.suggestions} />
+          </>
+        )}
+
+        <PasswordComparison />
       </div>
-
-      {loading && <p className="status-text">Analizando...</p>}
-      {error && <p className="error">{error}</p>}
-
-      {analysis && (
-        <>
-          <StrengthBar level={analysis.strengthLevel} entropy={analysis.entropy} />
-          <SuggestionsList suggestions={analysis.suggestions} />
-        </>
-      )}
     </div>
   </div>
   );
