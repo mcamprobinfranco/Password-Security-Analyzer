@@ -322,3 +322,84 @@ body {
 .theme-toggle:hover {
   transform: scale(1.08);
 }
+
+.history {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.history-header h2 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.clear-btn {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--bg);
+  border-left: 3px solid var(--border);
+  font-size: 0.85rem;
+}
+
+.history-item.level-weak { border-left-color: var(--weak); }
+.history-item.level-medium { border-left-color: var(--medium); }
+.history-item.level-strong { border-left-color: var(--strong); }
+.history-item.level-very_strong { border-left-color: var(--very-strong); }
+
+.history-info {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--text-primary);
+}
+
+.history-badge {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.history-entropy {
+  color: var(--text-secondary);
+}
+
+.history-remove {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0 4px;
+}
+
+.history-remove:hover {
+  color: var(--weak);
+}
