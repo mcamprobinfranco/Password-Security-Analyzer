@@ -8,6 +8,8 @@ import { analyzePassword } from './services/passwordApi';
 import PasswordGenerator from './components/PasswordGenerator';
 import ThemeToggle from './components/ThemeToggle';
 import { useTheme } from './hooks/useTheme';
+import PasswordHistory from './components/PasswordHistory';
+import { useHistory } from './hooks/useHistory';
 import './App.css';
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
   const [analysis, setAnalysis] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { history, addEntry, removeEntry, clearHistory } = useHistory();
 
   const debouncedAnalyze = useDebouncedCallback(async (password) => {
     if (!password) {
@@ -28,6 +31,7 @@ function App() {
     try {
       const result = await analyzePassword(password);
       setAnalysis(result);
+      addEntry(result, 'analyzed');
     } catch (err) {
       setError('No se pudo conectar con el servidor');
     } finally {
@@ -58,8 +62,9 @@ function App() {
           </>
         )}
 
-        <PasswordComparison />
-        <PasswordGenerator />
+        <PasswordComparison onCompare={(analysis) => addEntry(analysis, 'compared')} />
+        <PasswordGenerator onGenerate={(analysis) => addEntry(analysis, 'generated')} />
+        <PasswordHistory history={history} onRemove={removeEntry} onClear={clearHistory} />
       </div>
     </div>
   );
