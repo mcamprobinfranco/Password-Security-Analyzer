@@ -5,6 +5,7 @@ import StrengthBar from './components/StrengthBar';
 import SuggestionsList from './components/SuggestionsList';
 import PasswordComparison from './components/PasswordComparison';
 import { analyzePassword } from './services/passwordApi';
+import PasswordGenerator from './components/PasswordGenerator';
 import './App.css';
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
         )}
 
         <PasswordComparison />
+        <PasswordGenerator />
       </div>
     </div>
   );
