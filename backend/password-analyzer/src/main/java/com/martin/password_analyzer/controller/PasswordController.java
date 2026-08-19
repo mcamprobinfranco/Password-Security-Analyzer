@@ -3,6 +3,8 @@ package com.martin.password_analyzer.controller;
 import com.martin.password_analyzer.dto.PasswordAnalysisResponse;
 import com.martin.password_analyzer.dto.PasswordComparisonRequest;
 import com.martin.password_analyzer.dto.PasswordComparisonResponse;
+import com.martin.password_analyzer.dto.PasswordGenerationRequest;
+import com.martin.password_analyzer.dto.PasswordGenerationResponse;
 import com.martin.password_analyzer.dto.PasswordRequest;
 import com.martin.password_analyzer.service.PasswordAnalysisService;
 import jakarta.validation.Valid;
@@ -25,7 +27,12 @@ public class PasswordController {
 
     @PostMapping("/compare")
     public PasswordComparisonResponse compare(@Valid @RequestBody PasswordComparisonRequest request) {
-    return analysisService.compare(request.getPasswordA(), request.getPasswordB());
-}
+        return analysisService.compare(request.getPasswordA(), request.getPasswordB());
+    }
+
+    @PostMapping("/generate")
+    public PasswordGenerationResponse generate(@Valid @RequestBody PasswordGenerationRequest request) {
+        return analysisService.generate(request);
+    }
 
 }
