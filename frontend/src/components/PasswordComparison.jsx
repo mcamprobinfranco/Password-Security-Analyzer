@@ -3,7 +3,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import { comparePasswords } from '../services/passwordApi';
 import StrengthBar from './StrengthBar';
 
-function PasswordComparison() {
+function PasswordComparison({ onCompare }) {
   const [passwordA, setPasswordA] = useState('');
   const [passwordB, setPasswordB] = useState('');
   const [result, setResult] = useState(null);
@@ -19,6 +19,8 @@ function PasswordComparison() {
     try {
       const data = await comparePasswords(a, b);
       setResult(data);
+      onCompare(data.analysisA);
+      onCompare(data.analysisB);
     } catch (err) {
       setError('No se pudo comparar las contraseñas');
     }
