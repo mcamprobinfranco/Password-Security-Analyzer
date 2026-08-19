@@ -2,6 +2,8 @@ package com.martin.password_analyzer.service;
 
 import com.martin.password_analyzer.dto.PasswordAnalysisResponse;
 import com.martin.password_analyzer.dto.PasswordComparisonResponse;
+import com.martin.password_analyzer.dto.PasswordGenerationRequest;
+import com.martin.password_analyzer.dto.PasswordGenerationResponse;
 
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,13 @@ public class PasswordAnalysisService {
     private static final Pattern SEQUENTIAL = Pattern.compile(
         "(0123|1234|2345|3456|4567|5678|6789|abcd|bcde|cdef|qwer|asdf|zxcv)"
     );
+
+    private static final String UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
+    private static final String NUMBERS = "0123456789";
+    private static final String SYMBOLS = "!@#$%^&*()-_=+[]{}";
+
+private final java.security.SecureRandom random = new java.security.SecureRandom();
 
     public PasswordAnalysisResponse analyze(String password) {
         PasswordAnalysisResponse response = new PasswordAnalysisResponse();
@@ -130,4 +139,31 @@ public class PasswordAnalysisService {
 
         return response;
     }
+
+    public PasswordGenerationResponse generate(PasswordGenerationRequest request) {
+        StringBuilder pool = new StringBuilder();
+        if (request.isIncludeUppercase()) pool.append(UPPERCASE);
+        if (request.isIncludeLowercase()) pool.append(LOWERCASE);
+        if (request.isIncludeNumbers()) pool.append(NUMBERS);
+        if (request.isIncludeSymbols()) pool.append(SYMBOLS);
+
+        if (pool.isEmpty()) {
+            pool.append(LOWERCASE); // fallback si no se marcó ninguna opción
+        }
+
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < request.getLength(); i++) {
+            int index = random.nextInt(pool.length());
+            result.append(pool.charAt(index));
+        }
+
+        String generatedPassword = result.toString();
+
+        PasswordGenerationResponse response = new PasswordGenerationResponse();
+        response.setPassword(generatedPassword);
+        response.setAnalysis(analyze(generatedPassword));
+
+        return response;
+    }
+
 }
