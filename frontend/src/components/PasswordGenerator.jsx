@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { generatePassword } from '../services/passwordApi';
 
-function PasswordGenerator() {
+function PasswordGenerator({ onGenerate }) {
   const [length, setLength] = useState(16);
   const [options, setOptions] = useState({
     includeUppercase: true,
@@ -23,6 +23,7 @@ function PasswordGenerator() {
     try {
       const result = await generatePassword({ length, ...options });
       setGenerated(result.password);
+      onGenerate(result.analysis);
     } catch (err) {
       setError('No se pudo generar la contraseña');
     }
