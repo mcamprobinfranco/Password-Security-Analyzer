@@ -6,9 +6,12 @@ import SuggestionsList from './components/SuggestionsList';
 import PasswordComparison from './components/PasswordComparison';
 import { analyzePassword } from './services/passwordApi';
 import PasswordGenerator from './components/PasswordGenerator';
+import ThemeToggle from './components/ThemeToggle';
+import { useTheme } from './hooks/useTheme';
 import './App.css';
 
 function App() {
+  const { theme, toggleTheme } = useTheme();
   const [analysis, setAnalysis] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -38,6 +41,7 @@ function App() {
 
   return (
     <div className="app">
+      <ThemeToggle theme={theme} onToggle={toggleTheme} />
       <h1>Analizador de Contraseñas</h1>
       <div className="card">
         <div className="password-field">
